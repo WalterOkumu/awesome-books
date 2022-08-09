@@ -1,14 +1,5 @@
 /* eslint-disable func-names */
-let bookList = [
-  {
-    Title: 'Songs of Fire & Ice',
-    Author: 'George R. R. Martin',
-  },
-  {
-    Title: 'Lord of The Rings',
-    Author: 'J. R. R. Tolkien',
-  },
-];
+let bookList = [];
 
 function storageAvailable(type) {
   let storage;
@@ -33,8 +24,6 @@ function updateStorage() {
 const bookDiv = document.getElementsByClassName('book-list')[0];
 
 function populateBook() {
-  updateStorage();
-
   bookList.forEach((book, index) => {
     const h4 = document.createElement('h4');
     h4.innerText = book.Title;
@@ -56,17 +45,7 @@ function populateBook() {
   });
 }
 
-function loadFromStorage() {
-  if (storageAvailable('localStorage')) {
-    const { localStorage } = window;
-    bookList = JSON.parse(localStorage.getItem('bookList'));
-    populateBook();
-  }
-}
-
 function appendToBook() {
-  updateStorage();
-
   const lastBookIndex = bookList.length - 1;
 
   const h4 = document.createElement('h4');
@@ -88,9 +67,18 @@ function appendToBook() {
   bookDiv.appendChild(hr);
 }
 
-function addBook() {
-  updateStorage();
+function loadFromStorage() {
+  if (storageAvailable('localStorage')) {
+    const { localStorage } = window;
+    const bookData = JSON.parse(localStorage.getItem('bookList'));
+    if (bookData !== null) {
+      bookList = bookData;
+      populateBook();
+    }
+  }
+}
 
+function addBook() {
   const bookTitle = document.getElementsByClassName('book-title')[0];
   const author = document.getElementsByClassName('author')[0];
 
@@ -107,6 +95,7 @@ function addBook() {
     author.value = '';
 
     appendToBook();
+    updateStorage();
   }
 }
 
@@ -122,7 +111,7 @@ function removeBook(event) {
   bookList = newBookList;
 
   clearUI();
-
+  updateStorage();
   populateBook();
 }
 
@@ -135,5 +124,9 @@ window.onclick = function (event) {
 };
 
 window.onload = function () {
-  loadFromStorage();
+  if (JSON.parse(localStorage.getItem('bookList')) === null) {
+    updateStorage();
+  } else {
+    loadFromStorage();
+  }
 };
