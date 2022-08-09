@@ -1,6 +1,6 @@
 /* eslint-disable func-names */
 class Book {
-  constructor(bookList) {
+  constructor(bookList = []) {
     this.bookList = bookList;
   }
 
