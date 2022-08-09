@@ -10,13 +10,17 @@
 <body>
   <main>
     <div class="header">
-      <h1>Awesome Books</h1>
+      <h1>All Awesome Books</h1>
     </div>
     <div class="book-list" id="book-list"></div>
+    <hr />
     <div class="book">
+      <p class="add-book-title">Add a new book</p>
       <input type="text" placeholder="Title" class="book-title" name='book-title'/>
       <input type="text" placeholder="Author" class="author" name='author'/>
-      <button type="button" class="add-button">Add</button>
+      <div class="button-container">
+        <button type="button" class="add-button">Add</button>
+      </div>
     </div>
   </main>
   <script type="module" src="./scripts/index.js"></script>
