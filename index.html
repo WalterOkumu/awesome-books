@@ -4,9 +4,21 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles/styles.css" />
   <title>Awesome Books</title>
 </head>
 <body>
-  <h1>Awesome Books</h1>
+  <main>
+    <div class="header">
+      <h1>Awesome Books</h1>
+    </div>
+    <div class="book-list" id="book-list"></div>
+    <div class="book">
+      <input type="text" placeholder="Title" class="book-title" name='book-title'/>
+      <input type="text" placeholder="Author" class="author" name='author'/>
+      <button type="button" class="add-button">Add</button>
+    </div>
+  </main>
+  <script type="module" src="./scripts/index.js"></script>
 </body>
 </html>
