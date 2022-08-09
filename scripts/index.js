@@ -1,6 +1,8 @@
 /* eslint-disable func-names */
 let bookList = [];
 
+const bookDiv = document.getElementsByClassName('book-list')[0];
+
 function storageAvailable(type) {
   let storage;
   try {
@@ -21,50 +23,44 @@ function updateStorage() {
   }
 }
 
-const bookDiv = document.getElementsByClassName('book-list')[0];
-
 function populateBook() {
   bookList.forEach((book, index) => {
-    const h4 = document.createElement('h4');
-    h4.innerText = book.Title;
+    const bookContainer = document.createElement('div');
+    bookContainer.className = 'book-container';
 
-    const p = document.createElement('p');
-    p.innerText = book.Author;
-
-    const hr = document.createElement('hr');
+    const bookDetails = document.createElement('p');
+    bookDetails.className = 'book-details';
+    bookDetails.innerHTML = `&#34;${book.Title}&#34; by ${book.Author}`;
 
     const removeButton = document.createElement('button');
     removeButton.className = 'remove-button';
     removeButton.id = index;
     removeButton.innerText = 'Remove';
 
-    bookDiv.appendChild(h4);
-    bookDiv.appendChild(p);
-    bookDiv.appendChild(removeButton);
-    bookDiv.appendChild(hr);
+    bookContainer.appendChild(bookDetails);
+    bookContainer.appendChild(removeButton);
+    bookDiv.appendChild(bookContainer);
   });
 }
 
 function appendToBook() {
   const lastBookIndex = bookList.length - 1;
 
-  const h4 = document.createElement('h4');
-  h4.innerText = bookList[lastBookIndex].Title;
+  const bookContainer = document.createElement('div');
+  bookContainer.className = 'book-container';
 
-  const p = document.createElement('p');
-  p.innerText = bookList[lastBookIndex].Author;
-
-  const hr = document.createElement('hr');
+  const bookDetails = document.createElement('p');
+  bookDetails.className = 'book-details';
+  bookDetails.innerHTML = `&#34;${bookList[lastBookIndex].Title}&#34; by ${bookList[lastBookIndex].Author}`;
 
   const removeButton = document.createElement('button');
   removeButton.className = 'remove-button';
   removeButton.id = lastBookIndex;
   removeButton.innerText = 'Remove';
 
-  bookDiv.appendChild(h4);
-  bookDiv.appendChild(p);
-  bookDiv.appendChild(removeButton);
-  bookDiv.appendChild(hr);
+  bookContainer.appendChild(bookDetails);
+  bookContainer.appendChild(removeButton);
+  bookDiv.appendChild(bookContainer);
 }
 
 function loadFromStorage() {
