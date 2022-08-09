@@ -56,6 +56,14 @@ function populateBook() {
   });
 }
 
+function loadFromStorage() {
+  if (storageAvailable('localStorage')) {
+    const { localStorage } = window;
+    bookList = JSON.parse(localStorage.getItem('bookList'));
+    populateBook();
+  }
+}
+
 function appendToBook() {
   updateStorage();
 
@@ -79,8 +87,6 @@ function appendToBook() {
   bookDiv.appendChild(removeButton);
   bookDiv.appendChild(hr);
 }
-
-bookDiv.addEventListener('load', populateBook());
 
 function addBook() {
   updateStorage();
@@ -126,4 +132,8 @@ window.onclick = function (event) {
   } else if (event.target.className === 'remove-button') {
     removeBook(event);
   }
+};
+
+window.onload = function () {
+  loadFromStorage();
 };
