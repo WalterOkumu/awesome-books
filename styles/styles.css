@@ -49,6 +49,13 @@ nav {
   transform: scale(1.1);
 }
 
+.active {
+  border: 3px solid lightgray;
+  text-decoration: underline;
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
 .date {
   display: flex;
   justify-content: flex-end;
